@@ -2,6 +2,7 @@ version: "3"
 services:
   reverseproxy:
       image: mehmetkr/udagram-reverseproxy
+      container_name: udagram-reverseproxy
       ports:
           - 8080:8080
       restart: always
@@ -10,6 +11,7 @@ services:
         - backend-feed
   backend-user:
     image: mehmetkr/udagram-api-user
+    container_name: udagram-api-user
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
@@ -22,6 +24,7 @@ services:
       URL: "http://localhost:8100"
   backend-feed:
     image: mehmetkr/udagram-api-feed
+    container_name: udagram-api-feed
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
@@ -36,5 +39,6 @@ services:
       URL: "http://localhost:8100"
   frontend:
     image: mehmetkr/udagram-frontend:local
+    container_name: udagram-frontend
     ports:
       - "8100:80"
