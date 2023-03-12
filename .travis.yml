@@ -25,9 +25,10 @@ script:
   - docker tag udagram-api-feed mehmetkr/udagram-api-feed:latest
   - docker tag udagram-frontend mehmetkr/udagram-frontend:latest
 
-after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push mehmetkr/udagram-reverseproxy:latest
   - docker push mehmetkr/udagram-api-user:latest
   - docker push mehmetkr/udagram-api-feed:latest
   - docker push mehmetkr/udagram-frontend:latest
+
+after_success:
